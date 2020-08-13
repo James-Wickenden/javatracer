@@ -29,6 +29,7 @@ class RayPanel extends JPanel {
         addMouseMotionListener(new MouseAdapter(){
             public void mouseDragged(MouseEvent e){
             	// mouse drag handler
+            	paintPixel(e.getX(), e.getY());
             }
         });
 

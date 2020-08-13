@@ -1,6 +1,5 @@
 package javatracer;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
