@@ -10,11 +10,15 @@ import javafx.util.Pair;
 @SuppressWarnings("serial")
 class RayPanel extends JPanel {
 	
-    PixelHolder pixels = new PixelHolder();
-    	
-    public RayPanel() {
+    private PixelHolder pixels = new PixelHolder();
+    private int myWIDTH;
+    private int myHEIGHT;
+    
+    public RayPanel(int width, int height) {
         //setBorder(BorderFactory.createLineBorder(Color.black));
-
+    	myWIDTH = width;
+    	myHEIGHT = height;
+    	
         addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
                 // mouse click handler
@@ -37,8 +41,19 @@ class RayPanel extends JPanel {
     }
     
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);       
+        super.paintComponent(g);
+
+        g.setColor(Color.BLACK);	
+        for (int x = 0; x < myWIDTH; x++) {
+        	for (int y = 0; y < myHEIGHT; y++) {
+        		g.drawLine(x,y,x,y);
+        	}
+        }
+        
+        g.setColor(Color.WHITE);
         g.drawString("Red pixel count: " + pixels.GetPixels().size(),10,20);
+        g.drawString("width: " + myWIDTH + "px. height: " + myHEIGHT + "px.",10,35);
+        
         
         for (Pair<Integer, Integer> pixel : pixels.GetPixels()) {
         	int x = pixel.getKey();
