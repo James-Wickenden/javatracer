@@ -11,6 +11,7 @@ import javafx.util.Pair;
 class RayPanel extends JPanel {
 	
     private PixelHolder pixels = new PixelHolder();
+    private Camera camera = new Camera();
     private int myWIDTH;
     private int myHEIGHT;
     

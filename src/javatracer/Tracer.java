@@ -17,24 +17,25 @@ import java.awt.event.MouseMotionAdapter;
 public class Tracer {
     private static int WIDTH = 480;
     private static int HEIGHT = 360;
-    
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI(); 
+            	setup();
             }
         });
     }
-
-    private static void createAndShowGUI() {
+    
+    private static void setup() {
         System.out.println("Created GUI on EDT? "+
         SwingUtilities.isEventDispatchThread());
+        
         JFrame f = new JFrame("Raytracer");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         RayPanel rayPanel = new RayPanel(WIDTH, HEIGHT);
         rayPanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        
         f.add(rayPanel);
         f.pack();
         f.setVisible(true);

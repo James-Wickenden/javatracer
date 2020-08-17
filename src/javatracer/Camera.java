@@ -10,12 +10,12 @@ public class Camera {
 	private Vec3f position = new Vec3f();
 	private float focalLength = 100;
 	
-	public float getF() { return focalLength; }
+	public float getFoc() { return focalLength; }
 	public Vec3f getPos() { return position; }
 	public Matrix3f getOri() { return orientation; }
 	
-	public void translateBy(int dx, int dy, int dz) {
-		Vec3f trVec = new Vec3f(dx, dy, dz);
+	public void translateBy(float f, float g, float h) {
+		Vec3f trVec = new Vec3f(f, g, h);
 		translateBy(trVec);
 	}
 	
