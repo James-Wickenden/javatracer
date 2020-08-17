@@ -10,6 +10,8 @@ import javafx.util.Pair;
 @SuppressWarnings("serial")
 class RayPanel extends JPanel {
 	
+	private SceneRaytracer srt;
+	private Integer[][] pixelBuffer;
     private PixelHolder pixels = new PixelHolder();
     private Camera camera = new Camera();
     private int myWIDTH;
@@ -19,6 +21,9 @@ class RayPanel extends JPanel {
         //setBorder(BorderFactory.createLineBorder(Color.black));
     	myWIDTH = width;
     	myHEIGHT = height;
+    	
+    	srt = new SceneRaytracer(width, height);
+    	paintScreen();
     	
         addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
@@ -36,6 +41,12 @@ class RayPanel extends JPanel {
 
     }
 
+    private void paintScreen() {
+    	srt.RaytraceTriangles(camera, null);
+    	pixelBuffer = srt.getPixelBuffer();
+    	repaint();
+    }
+    
     private void paintPixel(int x, int y){
         pixels.AddPixel(x, y);
         repaint();
@@ -44,9 +55,11 @@ class RayPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.BLACK);	
         for (int x = 0; x < myWIDTH; x++) {
         	for (int y = 0; y < myHEIGHT; y++) {
+        		Integer pixColour = pixelBuffer[x][y];
+        		Color colour = new Color(pixColour);
+        		g.setColor(colour);
         		g.drawLine(x,y,x,y);
         	}
         }

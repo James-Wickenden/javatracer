@@ -8,7 +8,7 @@ public class ModelTriangle {
 	private Color colour;
 	
 	public ModelTriangle() {
-		for (Vec3f vertex : vertices) {
+		for (@SuppressWarnings("unused") Vec3f vertex : vertices) {
 			vertex = new Vec3f(0.0f, 0.0f, 0.0f);
 		}
 		colour = Color.MAGENTA;
