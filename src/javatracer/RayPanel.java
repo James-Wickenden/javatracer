@@ -73,7 +73,7 @@ class RayPanel extends JPanel {
         	int x = pixel.getKey();
         	int y = pixel.getValue();
         	
-        	g.setColor(Color.RED);
+        	g.setColor(Color.BLACK);
         	g.drawLine(x,y,x,y);
         }
     }  

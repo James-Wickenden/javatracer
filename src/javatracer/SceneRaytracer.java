@@ -15,7 +15,7 @@ public class SceneRaytracer {
 	public void RaytraceTriangles(Camera camera, List<ModelTriangle> modelTriangles) {
 		for (int x = 0; x < WIDTH; x++) {
 			for (int y = 0; y < HEIGHT; y++) {
-				Integer colour = ((x % 255) << 24) + ((y % 255) << 16) + 255;
+				Integer colour = ((x % 255) << 16) + ((y % 255) << 8) + 255;
 				pixelBuffer[x][y] = colour;
 			}
 		}
