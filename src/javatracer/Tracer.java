@@ -38,6 +38,8 @@ public class Tracer {
         f.add(rayPanel);
         f.pack();
         f.setVisible(true);
+        
+        //System.out.println("End of GUI creation.");
     }
 
 }
