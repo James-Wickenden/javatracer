@@ -7,7 +7,7 @@ public class Camera {
 	private Matrix3f orientation = new Matrix3f(0,  0, -1,    // right
             									0, -1,  0,    // up
             								   -1,  0,  0);   // forward
-	private Vec3f position = new Vec3f();
+	private Vec3f position = new Vec3f(0.0f, 0.0f, 0.0f);
 	private float focalLength = 100;
 	
 	public float getFoc() { return focalLength; }

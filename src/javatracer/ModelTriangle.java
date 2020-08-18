@@ -13,11 +13,11 @@ public class ModelTriangle {
 		}
 		colour = Color.MAGENTA;
 	}
-	public ModelTriangle(Vec3f vertices[]) {
+	public ModelTriangle(Vec3f[] vertices) {
 		this.vertices = vertices;
 		colour = Color.MAGENTA;
 	}
-	public ModelTriangle(Vec3f vertices[], Color colour) {
+	public ModelTriangle(Vec3f[] vertices, Color colour) {
 		this.vertices = vertices;
 		this.colour = colour;
 	}
