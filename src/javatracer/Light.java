@@ -8,7 +8,7 @@ public class Light {
 	private float intensity = 100.0f;
 	private float spread = 8.0f;
 	private Color colour = Color.WHITE;
-	private Vec3f position;
+	private Vec3f position = new Vec3f(0.0f, 0.0f, 0.0f);
 	
 	public float getIntensity() { return intensity; }
 	public float getSpread() { return spread; }

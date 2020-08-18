@@ -13,7 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseMotionAdapter;
 
-// built with https://docs.oracle.com/javase/tutorial/uiswing/painting/
+// built with help from https://docs.oracle.com/javase/tutorial/uiswing/painting/
 public class Tracer {
     private static int WIDTH = 480;
     private static int HEIGHT = 360;

@@ -80,3 +80,23 @@ RayPanel.java ///
 //        return new Dimension(250,200);
 //    }
 
+
+		addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent e){
+                // mouse click handler
+            	paintPixel(e.getX(), e.getY());
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter(){
+            public void mouseDragged(MouseEvent e){
+            	// mouse drag handler
+            	paintPixel(e.getX(), e.getY());
+            }
+        });
+        
+            
+    private void paintPixel(int x, int y){
+        pixels.AddPixel(x, y);
+        repaint();
+    }
