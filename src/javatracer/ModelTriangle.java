@@ -1,32 +1,33 @@
 package javatracer;
 
 import java.awt.Color;
-import com.sun.javafx.geom.Vec3f;
+
+import com.badlogic.gdx.math.Vector3;
 
 public class ModelTriangle {
-	private Vec3f[] vertices;
+	private Vector3[] vertices;
 	private Color colour;
 	
 	public ModelTriangle() {
-		for (@SuppressWarnings("unused") Vec3f vertex : vertices) {
-			vertex = new Vec3f(0.0f, 0.0f, 0.0f);
+		for (@SuppressWarnings("unused") Vector3 vertex : vertices) {
+			vertex = new Vector3(0.0f, 0.0f, 0.0f);
 		}
 		colour = Color.MAGENTA;
 	}
-	public ModelTriangle(Vec3f[] vertices) {
+	public ModelTriangle(Vector3[] vertices) {
 		this.vertices = vertices;
 		colour = Color.MAGENTA;
 	}
-	public ModelTriangle(Vec3f[] vertices, Color colour) {
+	public ModelTriangle(Vector3[] vertices, Color colour) {
 		this.vertices = vertices;
 		this.colour = colour;
 	}
 	
-	public Vec3f[] GetVertices() {
+	public Vector3[] GetVertices() {
 		return vertices;
 	}
 	
-	public void SetVertices(Vec3f[] vertices) {
+	public void SetVertices(Vector3[] vertices) {
 		this.vertices = vertices;
 	}
 	

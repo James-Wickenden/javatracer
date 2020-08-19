@@ -5,10 +5,9 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import javax.swing.JPanel;
 
-import com.sun.javafx.geom.Vec3f;
+import com.badlogic.gdx.math.Vector3;
 
 @SuppressWarnings("serial")
 class RayPanel extends JPanel {
@@ -63,7 +62,7 @@ class RayPanel extends JPanel {
         System.out.println("scene:");
         for (SceneObject so : scene) {
         	for (ModelTriangle mt : so.getFaces()) {
-        		for (Vec3f vec : mt.GetVertices()) {
+        		for (Vector3 vec : mt.GetVertices()) {
         			System.out.println("Point: " + vec + " colour: " + mt.GetColour() + " name: " + so.getName());
         		}
             }

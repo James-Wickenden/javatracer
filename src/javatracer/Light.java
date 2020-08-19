@@ -2,26 +2,26 @@ package javatracer;
 
 import java.awt.Color;
 
-import com.sun.javafx.geom.Vec3f;
+import com.badlogic.gdx.math.Vector3;
 
 public class Light {
 	private float intensity = 100.0f;
 	private float spread = 8.0f;
 	private Color colour = Color.WHITE;
-	private Vec3f position = new Vec3f(0.0f, 0.0f, 0.0f);
+	private Vector3 position = new Vector3(0.0f, 0.0f, 0.0f);
 	
 	public float getIntensity() { return intensity; }
 	public float getSpread() { return spread; }
 	public Color getColour() { return colour; }
-	public Vec3f getPosition() { return position; }
+	public Vector3 getPosition() { return position; }
 	
-	public float getIntensityAtPoint(Vec3f point) {
-		Vec3f point_to_light = point;
-		Vec3f flippedPos = position;
-		flippedPos.mul(-1);
-		point_to_light.add(flippedPos);
-
-		float intensityAtPoint =  intensity / (spread * (float)Math.PI * point_to_light.length());
+	public float getIntensityAtPoint(Vector3 point) {
+		Vector3 point_to_light = point;
+		Vector3 flippedPos = position;
+		
+		point_to_light.mulAdd(flippedPos, -1.0f);
+		
+		float intensityAtPoint =  intensity / (spread * (float)Math.PI * point_to_light.len());
 		return intensityAtPoint;
 	}
 }

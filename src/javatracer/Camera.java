@@ -1,25 +1,34 @@
 package javatracer;
 
-import com.sun.javafx.geom.Matrix3f;
-import com.sun.javafx.geom.Vec3f;
+import com.badlogic.gdx.math.Matrix3;
+import com.badlogic.gdx.math.Vector3;
 
 public class Camera {
-	private Matrix3f orientation = new Matrix3f(0,  0, -1,    // right
-            									0, -1,  0,    // up
-            								   -1,  0,  0);   // forward
-	private Vec3f position = new Vec3f(0.0f, 0.0f, 0.0f);
-	private float focalLength = 100;
+	private Matrix3 orientation;
+	
+	private Vector3 position;
+	private float focalLength;
+	
+	public Camera() {
+		float[] orientVals = { 0.0f, 0.0f, 1.0f,
+							   0.0f, 1.0f, 0.0f,
+							   1.0f, 0.0f, 0.0f };
+		
+		orientation = new Matrix3(orientVals);
+		position = new Vector3(0.0f, 0.0f, 0.0f);
+		focalLength = 100.0f;
+	}
 	
 	public float getFoc() { return focalLength; }
-	public Vec3f getPos() { return position; }
-	public Matrix3f getOri() { return orientation; }
+	public Vector3 getPos() { return position; }
+	public Matrix3 getOri() { return orientation; }
 	
 	public void translateBy(float f, float g, float h) {
-		Vec3f trVec = new Vec3f(f, g, h);
+		Vector3 trVec = new Vector3(f, g, h);
 		translateBy(trVec);
 	}
 	
-	public void translateBy(Vec3f translationVector) {
+	public void translateBy(Vector3 translationVector) {
 		position.add(translationVector);
 	}
 	

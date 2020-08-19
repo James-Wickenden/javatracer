@@ -3,7 +3,8 @@ package javatracer;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.javafx.geom.Vec3f;
+import com.badlogic.gdx.math.Vector3;
+
 import java.awt.Color;
 
 public class SceneParser {
@@ -12,13 +13,13 @@ public class SceneParser {
 		List<SceneObject> scene = new ArrayList<SceneObject>();
 		
 		List<ModelTriangle> obj = new ArrayList<ModelTriangle>();
-		Vec3f[] mt1Verts = { new Vec3f(100.0f, 100.0f, 100.0f),
-							 new Vec3f(-100.0f, 100.0f, 100.0f),
-							 new Vec3f(-100.0f, -100.0f, 100.0f)};
+		Vector3[] mt1Verts = { new Vector3(100.0f, 100.0f, 100.0f),
+							   new Vector3(-100.0f, 100.0f, 100.0f),
+							   new Vector3(-100.0f, -100.0f, 100.0f)};
 
-		Vec3f[] mt2Verts = { new Vec3f(100.0f, 100.0f, 100.0f),
-							 new Vec3f(100.0f, -100.0f, 100.0f),
-							 new Vec3f(-100.0f, -100.0f, 100.0f)};
+		Vector3[] mt2Verts = { new Vector3(100.0f, 100.0f, 100.0f),
+							   new Vector3(100.0f, -100.0f, 100.0f),
+							   new Vector3(-100.0f, -100.0f, 100.0f)};
 
 		ModelTriangle mt1 = new ModelTriangle(mt1Verts, Color.WHITE);
 		ModelTriangle mt2 = new ModelTriangle(mt2Verts, Color.WHITE);

@@ -2,16 +2,7 @@ package javatracer;
 
 import javax.swing.SwingUtilities;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics; 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseMotionAdapter;
 
 // built with help from https://docs.oracle.com/javase/tutorial/uiswing/painting/
 public class Tracer {
