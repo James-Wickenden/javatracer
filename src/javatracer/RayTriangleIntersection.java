@@ -30,4 +30,5 @@ public class RayTriangleIntersection {
     public Vector3 getIntersectionPoint() { return intersectionPoint; }
     public float getDistanceFromPoint() { return distanceFromPoint; }
     public boolean getIsSolution() { return isSolution; }
+    public ModelTriangle getIntersectedTriangle() { return intersectedTriangle; }
 }
