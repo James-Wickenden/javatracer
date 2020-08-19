@@ -25,15 +25,15 @@ public class SceneRaytracer {
 	public void RaytraceTriangles(Camera camera, Light light, List<SceneObject> objects) {
 		testTrace();
 		
-//		for (int i = 0; i < WIDTH; i++) {
-//			for (int j = 0; j < HEIGHT; j++) {
-//				int x =  i - WIDTH / 2;
-//			    int y = -j + HEIGHT / 2;
-//
-//			    //Vector3 ray = new Vector3(x, y, camera.getFoc());
-//			   //.(camera.getOri());
-//			}
-//		}
+		for (int i = 0; i < WIDTH; i++) {
+			for (int j = 0; j < HEIGHT; j++) {
+				int x =  i - WIDTH / 2;
+			    int y = -j + HEIGHT / 2;
+
+			    Vector3 ray = new Vector3(x, y, camera.getFoc());
+			    ray.mul(camera.getOri());
+			}
+		}
 	}
 	
 	public Integer[][] getPixelBuffer() { return pixelBuffer; }
