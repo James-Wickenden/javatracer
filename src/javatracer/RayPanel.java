@@ -7,8 +7,6 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JPanel;
 
-import com.badlogic.gdx.math.Vector3;
-
 @SuppressWarnings("serial")
 class RayPanel extends JPanel {
 	
@@ -35,11 +33,10 @@ class RayPanel extends JPanel {
                 // mouse click handler
             }
         });
-
     }
 
     private void paintScreen() {
-    	srt.RaytraceTriangles(camera, light, null);
+    	srt.RaytraceTriangles(camera, light, scene);
     	pixelBuffer = srt.getPixelBuffer();
     	repaint();
     }
@@ -58,15 +55,7 @@ class RayPanel extends JPanel {
         
         g.setColor(Color.WHITE);
         g.drawString("width: " + myWIDTH + "px. height: " + myHEIGHT + "px.",10,20);
-        
-        System.out.println("scene:");
-        for (SceneObject so : scene) {
-        	for (ModelTriangle mt : so.getFaces()) {
-        		for (Vector3 vec : mt.GetVertices()) {
-        			System.out.println("Point: " + vec + " colour: " + mt.GetColour() + " name: " + so.getName());
-        		}
-            }
-        }
+
     }  
 }
 

@@ -28,6 +28,7 @@ public class SceneRaytracer {
 	public void RaytraceTriangles(Camera camera, Light light, List<SceneObject> objects) {
 		testTrace();
 		
+		//System.out.println("rtt obs: " + objects);
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
 				int x =  i - WIDTH / 2;
@@ -40,26 +41,25 @@ public class SceneRaytracer {
 			    
 			    if (RTI.getIsSolution()) {
 			    	Color colour = RTI.getIntersectedTriangle().GetColour();
-			    	pixelBuffer[x][y] = colour.getRGB();
+			    	pixelBuffer[i][j] = colour.getRGB();
 			    }
-			    else { pixelBuffer[x][y] = Color.BLACK.getRGB(); }
+			    else { pixelBuffer[i][j] = Color.BLACK.getRGB(); }
 			}
 		}
 	}
 	
 	private RayTriangleIntersection getPossibleIntersection(ModelTriangle triangle, Vector3 rayDir, Vector3 point) {
-		  Vector3 e0 = triangle.GetVertices()[1];
+		  Vector3 e0 = triangle.GetVertices()[1].cpy();
 		  e0.sub(triangle.GetVertices()[0]);
-		  Vector3 e1 = triangle.GetVertices()[2];
+		  Vector3 e1 = triangle.GetVertices()[2].cpy();
 		  e1.sub(triangle.GetVertices()[0]);
 
-		  Vector3 SPVector = point;
-		  SPVector.sub(triangle.GetVertices()[0]);
+		  Vector3 SPVector = point.cpy();
+		  SPVector.sub(triangle.GetVertices()[0].cpy());
 		  
-		  Vector3 rayDir_2 = rayDir;
-		  rayDir_2.scl(-1);
+		  rayDir.scl(-1);
 		  
-		  float[] DEVals = {rayDir_2.x, rayDir_2.y, rayDir_2.z,
+		  float[] DEVals = {rayDir.x, rayDir.y, rayDir.z,
 				  			e0.x, e0.y, e0.z,
 				  			e1.x, e1.y, e1.z};
 		  
@@ -75,7 +75,7 @@ public class SceneRaytracer {
 		      ((0.0f <= v) && (v <= 1.0f)) &&
 		      (u + v <= 1.0f) && (t >= 0)) {
 			  	Vector3 e0_p_e1 = (e0.scl(u)).add(e1.scl(v));
-		        Vector3 point3d = triangle.GetVertices()[0].add(e0_p_e1);
+		        Vector3 point3d = triangle.GetVertices()[0].cpy().add(e0_p_e1);
 		        
 		        RayTriangleIntersection res = new RayTriangleIntersection(point3d, t * rayDir.len(), triangle, true);
 		        return res;
@@ -87,10 +87,12 @@ public class SceneRaytracer {
 	private RayTriangleIntersection getClosestIntersection(Vector3 rayDir, Camera camera, List<SceneObject> objects) {
 		RayTriangleIntersection closestIntersectionFound = new RayTriangleIntersection();
 		
-		System.out.println(objects);
+		//System.out.println("gci obs: " + objects);
 		for (SceneObject so : objects) {
 			for (ModelTriangle face : so.getFaces()) {
-				RayTriangleIntersection possibleSolution = getPossibleIntersection(face, rayDir, camera.getPos());
+				//System.out.println("so: " + so.getName() + "; face colour: " + face.GetColour() + "; ray: " + rayDir);
+
+				RayTriangleIntersection possibleSolution = getPossibleIntersection(face, rayDir.cpy(), camera.getPos());
 				
 				if (possibleSolution.getIsSolution()) {
 					if (possibleSolution.getDistanceFromPoint() < closestIntersectionFound.getDistanceFromPoint()) {

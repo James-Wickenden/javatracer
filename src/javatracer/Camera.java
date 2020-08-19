@@ -16,7 +16,7 @@ public class Camera {
 		
 		orientation = new Matrix3(orientVals);
 		position = new Vector3(0.0f, 0.0f, 0.0f);
-		focalLength = 100.0f;
+		focalLength = 1000.0f;
 	}
 	
 	public float getFoc() { return focalLength; }
