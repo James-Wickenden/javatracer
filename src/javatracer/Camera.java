@@ -15,7 +15,7 @@ public class Camera {
 							   1.0f, 0.0f, 0.0f };
 		
 		orientation = new Matrix3(orientVals);
-		position = new Vector3(0.0f, 0.0f, 0.0f);
+		position = new Vector3(0.0f, 0.0f, 200.0f);
 		focalLength = 1000.0f;
 	}
 	
