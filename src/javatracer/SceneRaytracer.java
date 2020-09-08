@@ -35,8 +35,8 @@ public class SceneRaytracer {
 				int y = -j + HEIGHT / 2;
 
 				Vector3 ray = new Vector3(x, y, camera.getFoc());
-				ray.mul(camera.getOri());
 
+				ray.mul(camera.getOri());
 				RayTriangleIntersection RTI = getClosestIntersection(ray, camera, objects);
 
 				if (RTI.getIsSolution()) {
@@ -51,7 +51,7 @@ public class SceneRaytracer {
 	}
 
 	private RayTriangleIntersection getPossibleIntersection(ModelTriangle triangle, Vector3 rayDir, Vector3 point) {
-		
+
 		Vector3 e0 = triangle.GetVertices()[1].cpy();
 		e0.sub(triangle.GetVertices()[0].cpy());
 
@@ -60,26 +60,40 @@ public class SceneRaytracer {
 		
 		Vector3 SPVector = point.cpy();
 		SPVector.sub(triangle.GetVertices()[0].cpy());
-
-		//rayDir.scl(1.0f);
+		
+		rayDir.scl(-1.0f);
 
 		float[] DEVals = { rayDir.x, rayDir.y, rayDir.z, e0.x, e0.y, e0.z, e1.x, e1.y, e1.z };
-
+		//float[] DEVals = { rayDir.x, e0.x, e1.x, rayDir.y, e0.y, e1.y, rayDir.z, e0.z, e1.z };
+		
 		Matrix3 DEMatrix = new Matrix3(DEVals);
-
+		
+		//System.out.println(rayDir);
+		//System.out.println(DEMatrix);
+		//System.out.println("");
+		
 		if (DEMatrix.det() == 0.0f) return new RayTriangleIntersection();
-		
-		DEMatrix = DEMatrix.inv();
-		
-		Vector3 possibleSolution = SPVector.mul(DEMatrix);
+
+		DEMatrix.inv();
+		SPVector.mul(DEMatrix);
+
+		Vector3 possibleSolution = SPVector;
 
 		float t = possibleSolution.x;
 		float u = possibleSolution.y;
 		float v = possibleSolution.z;
 
-		if (((0.0f <= u) && (u <= 1.0f)) && ((0.0f <= v) && (v <= 1.0f)) && (u + v <= 1.0f) && (t >= 0)) {
-			Vector3 e0_p_e1 = (e0.scl(u)).add(e1.scl(v));
-			Vector3 point3d = triangle.GetVertices()[0].cpy().add(e0_p_e1);
+		if (((0.0f <= u) && (u <= 1.0f)) && ((0.0f <= v) && (v <= 1.0f)) && ((u + v) <= 1.0f) && (t >= 0)) {
+			Vector3 e0_scaled = e0.cpy();
+			e0_scaled.scl(u);
+			Vector3 e1_scaled = e1.cpy();
+			e1_scaled.scl(v);
+			
+			Vector3 e0_p_e1 = e0_scaled.cpy();
+			e0_p_e1.add(e1_scaled);
+			
+			Vector3 point3d = triangle.GetVertices()[0].cpy();
+			point3d.add(e0_p_e1);
 
 			RayTriangleIntersection res = new RayTriangleIntersection(point3d, t * rayDir.len(), triangle, true);
 			return res;
@@ -97,6 +111,7 @@ public class SceneRaytracer {
 				// System.out.println("so: " + so.getName() + "; face colour: " +
 				// face.GetColour() + "; ray: " + rayDir);
 				Vector3 ray = rayDir.cpy();
+				//System.out.println(ray);
 				RayTriangleIntersection possibleSolution = getPossibleIntersection(face, ray, camera.getPos());
 
 				if (possibleSolution.getIsSolution()) {

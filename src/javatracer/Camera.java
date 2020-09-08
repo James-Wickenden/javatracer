@@ -10,13 +10,13 @@ public class Camera {
 	private float focalLength;
 	
 	public Camera() {
-		float[] orientVals = { 0.0f, 0.0f, 1.0f,
-							   0.0f, 1.0f, 0.0f,
-							   1.0f, 0.0f, 0.0f };
+		float[] orientVals = { 0.0f, 0.0f, -1.0f,
+							   0.0f, -1.0f, 0.0f,
+							   -1.0f, 0.0f, 0.0f };
 		
 		orientation = new Matrix3(orientVals);
 		position = new Vector3(0.0f, 0.0f, 200.0f);
-		focalLength = 1000.0f;
+		focalLength = 50.0f;
 	}
 	
 	public float getFoc() { return focalLength; }
